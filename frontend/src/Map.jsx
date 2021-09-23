@@ -1,13 +1,14 @@
+import React from "react";
 import { MapContainer, TileLayer, Marker, useMapEvents } from "react-leaflet";
 
 function LocationMarker({ position, setPosition }) {
   useMapEvents({
     click(e) {
       setPosition(e.latlng);
-    }
+    },
   });
 
-  return position ? <Marker position={position} /> : null;
+  return position ? <Marker position={position}></Marker> : null;
 }
 
 export default function Map({ position, setPosition }) {

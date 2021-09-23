@@ -5,7 +5,7 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import "./main.css";
 import icon from "leaflet/dist/images/marker-icon.png";
-import Map from './Map.jsx'
+import Map from "./Map.jsx";
 
 export default function App() {
   const [position, setPosition] = useState(null);
@@ -13,7 +13,7 @@ export default function App() {
 
   // Configure leaflet Marker icon - without this it is broken 💩
   // Wow this kind of sucks and was super hard to find!
-  const DefaultIcon = L.icon({ iconUrl: icon, shadowUrl: null  });
+  const DefaultIcon = L.icon({ iconUrl: icon, shadowUrl: null });
   L.Marker.prototype.options.icon = DefaultIcon;
 
   console.log("BACKEND RUNNING AT " + process.env.REACT_APP_BACKEND);
@@ -27,12 +27,18 @@ export default function App() {
       <Map position={position} setPosition={setPosition} />
       <div className="form-fields">
         <h3>Report abandoned bicycle</h3>
-        {position && <>GPS: {position.lat}, {position.lng}</>}
+        {position && (
+          <div>
+            GPS: {position.lat}, {position.lng}
+          </div>
+        )}
         <br />
         <textarea
-          onChange={e=>setDesc(e.target.value)}
+          onChange={(e) => setDesc(e.target.value)}
           placeholder="Write short description here"
-        >{desc}</textarea>
+        >
+          {desc}
+        </textarea>
         <button onClick={report}>Send report</button>
       </div>
     </div>
